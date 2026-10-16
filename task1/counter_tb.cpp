@@ -25,16 +25,19 @@ int main(int argc, char **argv, char **env){
         
         //dump variables into VCD file and toggle clock
         for(clk=0;clk<2;clk++){
-            tfp->dump (2*i+clk++);  //unit is in ps!!!!
+            tfp->dump (2*i+clk);  //unit is in ps!!!!
             top->clk=!top->clk;
             top->eval ();
         }
-        top->rst=(i<2)|(i==15);
+        top->rst=(i<2);
             
         top->en=(i>4);
-        if((i>9)&&(i<13)){
-            top->en=0
+
+        if(((i>13)&&(i<17))){
+            top->en=0;
         }
+
+
         
         if(Verilated::gotFinish()) exit(0);
     }
